@@ -1,15 +1,16 @@
-name: JFrog Webhook Trigger
+name: Artifact Deployed Trigger
 
 on:
   repository_dispatch:
-    types: [jfrog_event]
+    types: [artifact_deployed]
 
 jobs:
-  deploy:
+  process_artifact:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Log JFrog Event
-        run: echo "JFrog Webhook Triggered!"
+      - name: Log Deployment Event
+        run: |
+          echo "Artifact deployed to JFrog repository!"
+          echo "Repository: ${{ github.event.client_payload.repository }}"
+          echo "Path: ${{ github.event.client_payload.artifact_path }}"
+          echo "Artifact: ${{ github.event.client_payload.artifact_name }}"
