@@ -2,7 +2,7 @@ name: Artifact Deployed Trigger
 
 on:
   repository_dispatch:
-    types: [deployed]
+    types: [artifact_deployed]
 
 jobs:
   process_artifact:
