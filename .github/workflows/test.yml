@@ -1,8 +1,9 @@
 name: JFrog Artifact Deployment Trigger
 
 on:
-  repository_dispatch:
-    types: [deployed]
+  push:
+    paths:
+      - trigger-file.txt
 
 jobs:
   handle_artifact:
@@ -10,11 +11,4 @@ jobs:
     steps:
       - name: Log Raw Payload
         run: |
-          echo "Raw Payload: ${{ toJson(github.event) }}"
-
-      - name: Extract and Process Relevant Fields
-        run: |
-          echo "Processing deployment event..."
-          echo "Repository: ${{ github.event.client_payload.repositoryKey }}"
-          echo "Artifact Path: ${{ github.event.client_payload.path }}"
-          echo "Artifact Name: ${{ github.event.client_payload.name }}"
+          echo "Triggered !!!"
