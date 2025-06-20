@@ -1,0 +1,15 @@
+name: JFrog Webhook Trigger
+
+on:
+  repository_dispatch:
+    types: [jfrog_event]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Log JFrog Event
+        run: echo "JFrog Webhook Triggered!"
